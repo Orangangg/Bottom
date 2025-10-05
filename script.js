@@ -7,12 +7,147 @@
 (function(){const e=matchMedia('(hover:hover) and (pointer:fine)').matches;function t(){const t=document.querySelector('.t-carousel__zoomed');if(!t)return;const o=t.querySelector('.t-carousel__zoomer__inner')||t,r=t.querySelector('.t-carousel__zoomer__img');if(r){r.setAttribute('draggable','false');r.addEventListener('dragstart',e=>{e.preventDefault(),e.stopPropagation()},{capture:!0})}const i=e=>{e.stopPropagation(),e.preventDefault()};o.addEventListener('click',i,{capture:!0}),o.addEventListener('dblclick',i,{capture:!0});function n(e){const o=`__edgeclick __${e}`;let r=t.querySelector(`.${'left'===e?'__edgeclick.__left':'__edgeclick.__right'}`);return r||(r=document.createElement('div'),r.className=o,r.style.cursor='pointer',t.appendChild(r),r.addEventListener('click',o=>{o.stopPropagation(),o.preventDefault(),'right'===e?(t.querySelector('.t-carousel__zoomer__arrow__wrapper_right, .t-carousel__zoomer__arrow_wrapper_right')||t.querySelector('.t-carousel__zoomer__arrow_right'))?.click():(t.querySelector('.t-carousel__zoomer__arrow__wrapper_left, .t-carousel__zoomer__arrow_wrapper_left')||t.querySelector('.t-carousel__zoomer__arrow_left'))?.click()},{passive:!0})),r}n('left'),n('right');if(e&&!t.__dragBound){let o=0,r=0,i=!1;const n=40;const c=e=>!!e.target.closest('.t-carousel__zoomer__close,.t-carousel__zoomer__arrow__wrapper,.t-carousel__zoomer__arrow_wrapper,.t-carousel__zoomer__arrow,.__edgeclick');const a=e=>{0===e.button&&!c(e)&&(i=!0,o=e.clientX,r=0,document.body.style.userSelect='none')},l=e=>{i&&(r=e.clientX-o)},s=()=>{if(!i)return;i=!1,document.body.style.userSelect='',Math.abs(r)>=n&&(r<0?(t.querySelector('.t-carousel__zoomer__arrow__wrapper_right, .t-carousel__zoomer__arrow_wrapper_right')||t.querySelector('.t-carousel__zoomer__arrow_right'))?.click():(t.querySelector('.t-carousel__zoomer__arrow__wrapper_left, .t-carousel__zoomer__arrow_wrapper_left')||t.querySelector('.t-carousel__zoomer__arrow_left'))?.click())};t.addEventListener('mousedown',a,{passive:!0}),window.addEventListener('mousemove',l,{passive:!0}),window.addEventListener('mouseup',s,{passive:!0}),t.__dragBound=!0}}t();new MutationObserver(t).observe(document.body,{childList:!0,subtree:!0})})();
 
 
-// Это однострочный комментарий
+// Скрипт слайдера Dsgnmax
 
-/*
-  Это многострочный блок
-  для разметки секции
-*/
+
+document.addEventListener('DOMContentLoaded', () => {
+  const containers = document.querySelectorAll('.js-store-grid-cont');
+
+  containers.forEach((container) => {
+    const parent = container.closest('[class*="uc-slider-shop"]');
+    if (parent) {
+      container.addEventListener('tStoreRendered', () => initializeSwiper(container, parent));
+    }
+  });
+
+  function initializeSwiper(container, parent) {
+    const slides = container.querySelectorAll('.js-product');
+
+    container.classList.add('swiper');
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('swiper-wrapper');
+
+    slides.forEach((slide) => {
+      slide.classList.add('swiper-slide');
+      wrapper.appendChild(slide);
+    });
+
+    container.innerHTML = '';
+    container.appendChild(wrapper);
+
+    const dbmNextButton = document.createElement('div');
+    dbmNextButton.classList.add('swiper-button-next-dbm');
+    const dbmPrevButton = document.createElement('div');
+    dbmPrevButton.classList.add('swiper-button-prev-dbm');
+    const scrollbar = document.createElement('div');
+    scrollbar.classList.add('swiper-scrollbar-dbm');
+
+    container.appendChild(dbmNextButton);
+    container.appendChild(dbmPrevButton);
+    container.appendChild(scrollbar);
+
+    let swiperConfig = {
+      loop: false,
+      navigation: {
+        nextEl: dbmNextButton,
+        prevEl: dbmPrevButton,
+      },
+      scrollbar: {
+        el: '.swiper-scrollbar-dbm',
+        draggable: true,
+      },
+      autoplay: {
+        delay: 2000,
+        disableOnInteraction: false,
+      },
+      effect: 'slide',
+      speed: 400,
+      slidesPerView: 4,
+      spaceBetween: 20,
+      slidesPerGroup: 2,
+      breakpoints: {
+        320: { slidesPerView: 1, slidesPerGroup: 1 },
+        480: { slidesPerView: 2, slidesPerGroup: 1 },
+        640: { slidesPerView: 2, slidesPerGroup: 1 },
+        768: { slidesPerView: 3, slidesPerGroup: 1 },
+        1000: { slidesPerView: 4, slidesPerGroup: 1 },
+        1360: { slidesPerView: 4, slidesPerGroup: 1 },
+        1920: { slidesPerView: 4, slidesPerGroup: 1 }
+      }
+    };
+
+    if (parent.classList.contains('uc-slider-shop-1')) {
+      swiperConfig.speed = 400;
+      swiperConfig.slidesPerGroup = 3;
+      swiperConfig.slidesPerView = 4;
+      swiperConfig.breakpoints = {
+        320: { slidesPerView: 1, slidesPerGroup: 1 },
+        480: { slidesPerView: 2, slidesPerGroup: 1 },
+        640: { slidesPerView: 2, slidesPerGroup: 1 },
+        768: { slidesPerView: 3, slidesPerGroup: 1 },
+        1000: { slidesPerView: 4, slidesPerGroup: 1 },
+        1360: { slidesPerView: 5, slidesPerGroup: 1 },
+        1920: { slidesPerView: 4, slidesPerGroup: 2 }
+      };
+    }
+
+    const swiper = new Swiper(container, swiperConfig);
+    window.addEventListener('resize', () => swiper.update());
+    swiper.init();
+  }
+
+  containers.forEach((container) => {
+    const event = new Event('tStoreRendered');
+    container.dispatchEvent(event);
+  });
+});
+
+// Высота карточек
+function setEqualHeight() {
+  const elements = document.querySelectorAll('[class*="uc-slider-shop"] .t-store__card__textwrapper');
+  if (elements.length === 0) return;
+  elements.forEach(el => el.style.height = 'auto');
+  let maxHeight = 0;
+  elements.forEach(el => {
+    const height = el.offsetHeight;
+    if (height > maxHeight) {
+      maxHeight = height;
+    }
+  });
+  elements.forEach(el => el.style.height = `${maxHeight}px`);
+}
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+document.addEventListener('DOMContentLoaded', setEqualHeight);
+window.addEventListener('resize', debounce(setEqualHeight, 250));
+const observerHeighCard = new MutationObserver(debounce(setEqualHeight, 250));
+observerHeighCard.observe(document.body, { childList: true, subtree: true });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -36,6 +171,7 @@ t_onReady(function(){var RK="tbReloadedAfterNotify";try{sessionStorage.getItem(R
 
 
 document.addEventListener("DOMContentLoaded",()=>{const m=()=>{const i=document.querySelector(".t-store__prod-popup__info"),t=document.querySelector(".t-store__tabs_accordion");i&&t&&!i.contains(t)&&i.appendChild(t)};t_onFuncLoad("t_store_init",m);document.addEventListener("click",e=>{e.target.closest('a[href*="/tproduct/"]')&&setTimeout(m,500)})});
+
 
 
 

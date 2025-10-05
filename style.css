@@ -1,6 +1,127 @@
 
+/* Слайдер Dsgnmax */
 
-/* Это комментарий в CSS */
+:root {
+  --dbmPaddingSliderDesktop: 40px;
+  --dbmPaddingSliderTablet: 20px;
+  --dbmPaddingSliderMobile: 10px;
+  --dbmIconArrowPrev: url(https://static.tildacdn.com/tild6162-3263-4135-b334-346562393036/arrow-prev.svg);
+  --dbmIconArrowNext: url(https://static.tildacdn.com/tild3637-3632-4531-a432-633034666565/arrow-next.svg);
+  --dbmBorderRadiusArrow: 12px;
+  --dbmWidthHeightArrow: 40px;
+  --dbmGapSlider: 20px;
+  --dbmBackgroundScrollbarContainer: #cecece;
+  --dbmPaddingScrollbarContainer: 0px;
+  --dbmBorderRadiusScrollbarContainer: 100px;
+  --dbmHeightScrollbarContainer: 6px;
+  --dbmMarginTop: 30px;
+  --dbmBackgroundDrag: #7C7C7C;
+  --dbmBorderRadiusDrag: 100px;
+}
+
+/* Удаляем разделители сетки */
+[class*="uc-slider-shop"] .t-store__grid-separator {
+  display: none;
+}
+
+/* Обновлённые стили стрелок — по центру */
+[class*="uc-slider-shop"] .swiper-button-prev-dbm,
+[class*="uc-slider-shop"] .swiper-button-next-dbm {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--dbmWidthHeightArrow);
+  height: var(--dbmWidthHeightArrow);
+  border-radius: var(--dbmBorderRadiusArrow);
+  cursor: pointer;
+  z-index: 10;
+}
+
+[class*="uc-slider-shop"] .swiper-button-prev-dbm {
+  left: 30px;
+  background-image: var(--dbmIconArrowPrev);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+[class*="uc-slider-shop"] .swiper-button-next-dbm {
+  right: 30px;
+  background-image: var(--dbmIconArrowNext);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+[class*="uc-slider-shop"] .swiper-button-disabled {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+@media screen and (max-width: 640px) {
+  [class*="uc-slider-shop"] .swiper-button-prev-dbm {
+    left: 10px;
+  }
+  [class*="uc-slider-shop"] .swiper-button-next-dbm {
+    right: 10px;
+  }
+}
+
+/* Стили скроллбара */
+[class*="uc-slider-shop"] .swiper-scrollbar-dbm {
+  height: var(--dbmHeightScrollbarContainer) !important;
+  width: 100% !important;
+  background-color: var(--dbmBackgroundScrollbarContainer);
+  border-radius: var(--dbmBorderRadiusScrollbarContainer);
+  padding: var(--dbmPaddingScrollbarContainer);
+  margin-top: var(--dbmMarginTop);
+}
+
+[class*="uc-slider-shop"] .swiper-scrollbar-drag {
+  background-color: var(--dbmBackgroundDrag);
+  height: 100%;
+  border-radius: var(--dbmBorderRadiusDrag);
+  cursor: pointer;
+}
+
+[class*="uc-slider-shop"] .swiper {
+  margin: 0 auto;
+  overflow: hidden;
+  max-width: calc(100vw - (var(--dbmPaddingSliderDesktop) * 2));
+  position: relative;
+  padding: 0 !important;
+  padding-top: 50px !important;
+}
+
+[class*="uc-slider-shop"] .swiper-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--dbmGapSlider);
+}
+
+[class*="uc-slider-shop"] .swiper-slide {
+  height: 100%;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  flex: 0 0 auto;
+}
+
+[class*="uc-slider-shop"] .swiper-slide > div {
+  width: 100% !important;
+}
+
+@media screen and (max-width: 1000px) {
+  [class*="uc-slider-shop"] .swiper {
+    max-width: calc(100vw - (var(--dbmPaddingSliderTablet) * 2));
+  }
+}
+@media screen and (max-width: 640px) {
+  [class*="uc-slider-shop"] .swiper {
+    max-width: calc(100vw - (var(--dbmPaddingSliderMobile) * 2));
+  }
+}
+
+
+
 
 :root{--gallery-bg:#f3f3f3;--gallery-btn-bg:#fff;--gallery-btn-border:#e2e2e2;--gallery-btn-shadow:0 2px 8px rgba(0,0,0,.06);--gallery-arrow-size:46px;--arrows-gap:12px;--card-arrow-size:30px;--card-icon-size:14px;--card-shadow:0 2px 8px rgba(0,0,0,.04)}.t-slds__arrow.t-slds__arrow-withbg{width:var(--card-arrow-size)!important;height:var(--card-arrow-size)!important;border-radius:50%!important;background:#fff!important;border:1px solid var(--gallery-btn-border)!important;box-shadow:var(--card-shadow)!important;display:flex!important;align-items:center!important;justify-content:center!important;line-height:0!important;z-index:3!important;transition:background .2s ease,box-shadow .2s ease!important}.t-slds__arrow .t-slds__arrow_body{width:auto!important;height:auto!important;display:flex!important;align-items:center!important;justify-content:center!important;transform:none!important}.t-slds__arrow .t-slds__arrow_body svg{display:none!important}.t-slds__arrow.t-slds__arrow-left::after{content:"";width:var(--card-icon-size);height:var(--card-icon-size);display:block;background:url('https://static.tildacdn.com/tild3038-6338-4165-b130-363563316665/Arrow-left.svg') center/contain no-repeat}.t-slds__arrow.t-slds__arrow-right::after{content:"";width:var(--card-icon-size);height:var(--card-icon-size);display:block;background:url('https://static.tildacdn.com/tild6230-3134-4239-b966-313337626162/Arrow-rigth.svg') center/contain no-repeat}.t-slds__arrow.t-slds__arrow-withbg:hover{background:#fff!important;box-shadow:0 2px 10px rgba(0,0,0,.08)!important}@media(hover:hover){.t-slds__arrow.t-slds__arrow-withbg:hover::after{filter:brightness(.7)}}@media(max-width:960px){.t-slds__arrow.t-slds__arrow-withbg,.t-slds__arrow.t-slds__arrow-withbg:active,.t-slds__arrow.t-slds__arrow-withbg[style]{transform:none!important;top:auto!important}}.t-carousel__zoomed,.t-carousel__zoomed .t-carousel__zoomer,.t-carousel__zoomed .t-carousel__zoomer__inner,.t-carousel__zoomed .t-carousel__zoomer__imagebox{background:var(--gallery-bg)!important}.t-carousel__zoomed .t-carousel__zoomer__img{display:block!important;object-fit:contain!important;max-height:78vh!important;margin:auto!important}@media(max-width:960px){.t-carousel__zoomed .t-carousel__zoomer__img{max-height:66vh!important}}@media(max-width:640px){.t-carousel__zoomed .t-carousel__zoomer__img{max-height:62vh!important}}@media(max-width:480px){.t-carousel__zoomed .t-carousel__zoomer__img{max-height:58vh!important}}@media(max-width:360px){.t-carousel__zoomed .t-carousel__zoomer__img{max-height:55vh!important}}.t-carousel__zoomed .t-carousel__zoomer__tools,.t-carousel__zoomed .t-carousel__zoomer__toolbar,.t-carousel__zoomed .t-carousel__zoomer__zoom,.t-carousel__zoomed .t-carousel__zoomer__zoom-in,.t-carousel__zoomed .t-carousel__zoomer__zoom-out,.t-carousel__zoomed .t-carousel__zoomer__tool_zoom{display:none!important}.t-carousel__zoomed .t-carousel__zoomer__arrow,.t-carousel__zoomed .t-carousel__zoomer__arrow svg,.t-carousel__zoomed .t-carousel__zoomer__arrow path{display:none!important;visibility:hidden!important;pointer-events:none!important}.t-carousel__zoomed .t-carousel__zoomer__arrow__wrapper,.t-carousel__zoomed .t-carousel__zoomer__arrow_wrapper{position:fixed!important;width:var(--gallery-arrow-size)!important;height:var(--gallery-arrow-size)!important;border-radius:50%!important;background:var(--gallery-btn-bg)!important;border:1px solid var(--gallery-btn-border)!important;box-shadow:var(--gallery-btn-shadow)!important;display:flex!important;align-items:center!important;justify-content:center!important;z-index:10010!important;line-height:0!important;transition:background .2s ease,box-shadow .2s ease!important}@media(min-width:961px){.t-carousel__zoomed .t-carousel__zoomer__arrow__wrapper,.t-carousel__zoomed .t-carousel__zoomer__arrow_wrapper{top:50%!important;left:auto!important;right:auto!important;transform:translateY(-50%)!important}.t-carousel__zoomed .t-carousel__zoomer__arrow__wrapper_left,.t-carousel__zoomed .t-carousel__zoomer__arrow_wrapper_left{left:32px!important}.t-carousel__zoomed .t-carousel__zoomer__arrow__wrapper_right,.t-carousel__zoomed .t-carousel__zoomer__arrow_wrapper_right{right:32px!important}.t-carousel__zoomed .t-carousel__zoomer__arrow__wrapper:hover,.t-carousel__zoomed .t-carousel__zoomer__arrow_wrapper:hover,.t-carousel__zoomed .t-carousel__zoomer__arrow__wrapper:active,.t-carousel__zoomed .t-carousel__zoomer__arrow_wrapper:active{top:50%!important;transform:translateY(-50%)!important}}@media(max-width:960px){.t-carousel__zoomed .t-carousel__zoomer__arrow__wrapper,.t-carousel__zoomed .t-carousel__zoomer__arrow_wrapper,.t-carousel__zoomed .t-carousel__zoomer__arrow__wrapper:hover,.t-carousel__zoomed .t-carousel__zoomer__arrow_wrapper:hover,.t-carousel__zoomed .t-carousel__zoomer__arrow__wrapper:focus,.t-carousel__zoomed .t-carousel__zoomer__arrow_wrapper:focus,.t-carousel__zoomed .t-carousel__zoomer__arrow__wrapper:active,.t-carousel__zoomed .t-carousel__zoomer__arrow_wrapper:active{bottom:6.5%!important;top:auto!important;transform:none!important;left:auto!important;right:auto!important}.t-carousel__zoomed .t-carousel__zoomer__arrow__wrapper_left,.t-carousel__zoomed .t-carousel__zoomer__arrow_wrapper_left{left:calc(50% - var(--arrows-gap) - var(--gallery-arrow-size))!important}.t-carousel__zoomed .t-carousel__zoomer__arrow__wrapper_right,.t-carousel__zoomed .t-carousel__zoomer__arrow_wrapper_right{left:calc(50% + var(--arrows-gap))!important}.t-carousel__zoomed .t-carousel__zoomer__arrow__wrapper_left[style],.t-carousel__zoomed .t-carousel__zoomer__arrow_wrapper_left[style]{right:auto!important;left:calc(50% - var(--arrows-gap) - var(--gallery-arrow-size))!important;top:auto!important;bottom:6.5%!important;transform:none!important}.t-carousel__zoomed .t-carousel__zoomer__arrow__wrapper_right[style],.t-carousel__zoomed .t-carousel__zoomer__arrow_wrapper_right[style]{right:auto!important;left:calc(50% + var(--arrows-gap))!important;top:auto!important;bottom:6.5%!important;transform:none!important}}@media(max-width:480px){:root{--arrows-gap:8px}.t-carousel__zoomed .t-carousel__zoomer__arrow__wrapper,.t-carousel__zoomed .t-carousel__zoomer__arrow_wrapper{bottom:6%!important}}.t-carousel__zoomed .t-carousel__zoomer__arrow__wrapper_left::after,.t-carousel__zoomed .t-carousel__zoomer__arrow_wrapper_left::after{content:"";display:block;width:20px;height:20px;background:url('https://static.tildacdn.com/tild3038-6338-4165-b130-363563316665/Arrow-left.svg') center/contain no-repeat}.t-carousel__zoomed .t-carousel__zoomer__arrow__wrapper_right::after,.t-carousel__zoomed .t-carousel__zoomer__arrow_wrapper_right::after{content:"";display:block;width:20px;height:20px;background:url('https://static.tildacdn.com/tild6230-3134-4239-b966-313337626162/Arrow-rigth.svg') center/contain no-repeat}@media(hover:hover){.t-carousel__zoomed .t-carousel__zoomer__arrow__wrapper:hover::after,.t-carousel__zoomed .t-carousel__zoomer__arrow_wrapper:hover::after{filter:brightness(.7)}}.t-carousel__zoomed .t-carousel__zoomer__close{background:#fff!important;border:1px solid var(--gallery-btn-border)!important;border-radius:50%!important;box-shadow:var(--gallery-btn-shadow)!important}.t-carousel__zoomed .t-carousel__zoomer__close svg path{stroke:#0f172a!important}.t-slds__arrow.t-slds__arrow-left,.t-slds__arrow.t-slds__arrow-right{top:50%!important;transform:translateY(-50%)!important;margin-top:0!important}@media(max-width:960px){.t-slds__arrow.t-slds__arrow-left,.t-slds__arrow.t-slds__arrow-right,.t-slds__arrow.t-slds__arrow-left[style],.t-slds__arrow.t-slds__arrow-right[style]{top:50%!important;transform:translateY(-50%)!important;bottom:auto!important}}
 
@@ -75,6 +196,7 @@
 
 
 .t-store__tabs_accordion{margin:0!important}.t-store.t-store__prod-snippet__container .t-store__tabs{padding:0!important}.t-store__tabs{margin:34px 0 6px!important;border-bottom:1px solid rgba(0,0,0,.1)!important}@media screen and (min-width:981px){.t-container_fluid .t-col_12{max-width:100%}}.t-store .t-store__tabs_accordion .t-store__tabs__item-button{border-top:1px solid rgba(0,0,0,.1)!important;padding:20px 10px 20px 0!important}.t-store .t-store__tabs_accordion .t-store__tabs__item-button:not(.t-store__tabs__item-button_active){border-bottom:1px solid rgba(0,0,0,0)!important}.t-store .t-store__tabs__close:after{background-color:transparent!important}.t-store__tabs__item-title{font-size:15px;font-weight:500!important;line-height:1}.t-store__tabs__content{line-height:1.2;font-size:15px}@media screen and (min-width:980px){.t-store__prod-popup__col_fixed{top:55px}}@media screen and (max-width:640px){.t-store__tabs__item-title{font-size:14px}.t-store__tabs__content{font-size:12px}.t-store .t-store__tabs_accordion .t-store__tabs__item-button{padding:15px 10px 15px 0!important}}
+
 
 
 

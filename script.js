@@ -7,7 +7,12 @@
 (function(){const e=matchMedia('(hover:hover) and (pointer:fine)').matches;function t(){const t=document.querySelector('.t-carousel__zoomed');if(!t)return;const o=t.querySelector('.t-carousel__zoomer__inner')||t,r=t.querySelector('.t-carousel__zoomer__img');if(r){r.setAttribute('draggable','false');r.addEventListener('dragstart',e=>{e.preventDefault(),e.stopPropagation()},{capture:!0})}const i=e=>{e.stopPropagation(),e.preventDefault()};o.addEventListener('click',i,{capture:!0}),o.addEventListener('dblclick',i,{capture:!0});function n(e){const o=`__edgeclick __${e}`;let r=t.querySelector(`.${'left'===e?'__edgeclick.__left':'__edgeclick.__right'}`);return r||(r=document.createElement('div'),r.className=o,r.style.cursor='pointer',t.appendChild(r),r.addEventListener('click',o=>{o.stopPropagation(),o.preventDefault(),'right'===e?(t.querySelector('.t-carousel__zoomer__arrow__wrapper_right, .t-carousel__zoomer__arrow_wrapper_right')||t.querySelector('.t-carousel__zoomer__arrow_right'))?.click():(t.querySelector('.t-carousel__zoomer__arrow__wrapper_left, .t-carousel__zoomer__arrow_wrapper_left')||t.querySelector('.t-carousel__zoomer__arrow_left'))?.click()},{passive:!0})),r}n('left'),n('right');if(e&&!t.__dragBound){let o=0,r=0,i=!1;const n=40;const c=e=>!!e.target.closest('.t-carousel__zoomer__close,.t-carousel__zoomer__arrow__wrapper,.t-carousel__zoomer__arrow_wrapper,.t-carousel__zoomer__arrow,.__edgeclick');const a=e=>{0===e.button&&!c(e)&&(i=!0,o=e.clientX,r=0,document.body.style.userSelect='none')},l=e=>{i&&(r=e.clientX-o)},s=()=>{if(!i)return;i=!1,document.body.style.userSelect='',Math.abs(r)>=n&&(r<0?(t.querySelector('.t-carousel__zoomer__arrow__wrapper_right, .t-carousel__zoomer__arrow_wrapper_right')||t.querySelector('.t-carousel__zoomer__arrow_right'))?.click():(t.querySelector('.t-carousel__zoomer__arrow__wrapper_left, .t-carousel__zoomer__arrow_wrapper_left')||t.querySelector('.t-carousel__zoomer__arrow_left'))?.click())};t.addEventListener('mousedown',a,{passive:!0}),window.addEventListener('mousemove',l,{passive:!0}),window.addEventListener('mouseup',s,{passive:!0}),t.__dragBound=!0}}t();new MutationObserver(t).observe(document.body,{childList:!0,subtree:!0})})();
 
 
+// Это однострочный комментарий
 
+/*
+  Это многострочный блок
+  для разметки секции
+*/
 
 
 
@@ -31,6 +36,7 @@ t_onReady(function(){var RK="tbReloadedAfterNotify";try{sessionStorage.getItem(R
 
 
 document.addEventListener("DOMContentLoaded",()=>{const m=()=>{const i=document.querySelector(".t-store__prod-popup__info"),t=document.querySelector(".t-store__tabs_accordion");i&&t&&!i.contains(t)&&i.appendChild(t)};t_onFuncLoad("t_store_init",m);document.addEventListener("click",e=>{e.target.closest('a[href*="/tproduct/"]')&&setTimeout(m,500)})});
+
 
 
 
